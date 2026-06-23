@@ -7,6 +7,9 @@ public class TwoDimensionalController : MonoBehaviour
     float velocityX = 0.0f;
     public float acceleration = 2.0f;
     public float deceleration = 2.0f;
+    public float maximumWalkVelocity = 0.5f;
+    public float maximumRunVelocity = 2.0f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,19 +25,59 @@ public class TwoDimensionalController : MonoBehaviour
         bool rightPressed = Input.GetKey("d");
         bool runPressed = Input.GetKey("left shift");
 
-        if (forwardPressed)
+        float currentMaxVelocity = runPressed ? maximumRunVelocity : maximumWalkVelocity;
+
+        if (forwardPressed && velocityZ < currentMaxVelocity)
         {
             velocityZ += Time.deltaTime * acceleration;
         }
 
-        if (leftPressed)
+        if (leftPressed && velocityX < currentMaxVelocity)
         {
             velocityX -= Time.deltaTime * acceleration;
         }
 
-        if (rightPressed)
+        if (rightPressed && velocityX < currentMaxVelocity)
         {
             velocityX += Time.deltaTime * acceleration;
         }
+
+        if (!forwardPressed && velocityZ > 0.0f)
+        {
+            velocityZ -= Time.deltaTime * deceleration;
+        }
+
+        if (!forwardPressed && velocityZ < 0.0f)
+        {
+            velocityZ = 0.0f;
+        }
+
+        if (!leftPressed && velocityX < 0.0f)
+        {
+            velocityX += Time.deltaTime * deceleration;
+        }
+
+        if (!rightPressed && velocityX > 0.0f)
+        {
+            velocityX -= Time.deltaTime * deceleration;
+        }
+
+        if (!leftPressed && !rightPressed && velocityX != 0.0f && (velocityX > -0.05f && velocityX < 0.05f))
+        {
+            velocityX = 0.0f;
+        }
+
+        if (forwardPressed && runPressed && velocityZ > currentMaxVelocity)
+        {
+            velocityZ = currentMaxVelocity;
+        }
+
+        else if (forwardPressed && velocityZ > currentMaxVelocity)
+        {
+            velocityZ -= Time.deltaTime * deceleration;
+        }
+
+        animator.SetFloat("Velocity Z", velocityZ);
+        animator.SetFloat("Velocity X", velocityX);
     }
 }
