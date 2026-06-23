@@ -6,6 +6,7 @@ public class animationStateController : MonoBehaviour
     int isJoggingHash;
     int isRunningHash;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -46,5 +47,8 @@ public class animationStateController : MonoBehaviour
         {
             animator.SetBool(isRunningHash, false);
         }
+
+       
+        
     }
 }
