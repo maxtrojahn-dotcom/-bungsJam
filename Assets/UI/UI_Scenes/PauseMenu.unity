@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e3495fbc39b1644b37694381b60a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  PauseCanvas: {fileID: 218232975}
+  PauseCanvas: {fileID: 0}
   OptionsCanvas: {fileID: 0}
 --- !u!1 &545319967
 GameObject:
