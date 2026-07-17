@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] public GameObject PauseMenuCanvas;
+    [SerializeField] public GameObject OptionsCanvas;
 
    void Start()
     {
@@ -29,6 +30,11 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+ public void Options()
+    {
+        OptionsCanvas.SetActive(true);
     }
 
     public void QuitApp()

@@ -2,10 +2,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class OptionsMenu : MonoBehaviour 
-
 {
-    public void GoToScene(string PauseMenu) 
+    [SerializeField] private GameObject OptionsCanvas;
+    
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        SceneManager.LoadScene(PauseMenu);
+
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void Back()
+    {
+        OptionsCanvas.SetActive(false);
+    }
+
 }
