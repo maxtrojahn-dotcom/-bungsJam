@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CreditsMenu : MonoBehaviour 
+public class CreditsMenuButton : MonoBehaviour 
 {
   
-    public void LoadMainMenu(string MainMenu) 
+    public void LoadMain(string MainMenu) 
     {
         SceneManager.LoadScene(MainMenu);
     }
