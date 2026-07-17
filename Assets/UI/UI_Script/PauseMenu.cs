@@ -1,26 +1,28 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour {
-    [SerializeField] private GameObject PauseCanvas;
+public class PauseMenu : MonoBehaviour
+{
+    [SerializeField] public GameObject PauseMenuCanvas;
 
-    void Start()
+   void Start()
     {
 
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 0;
-            PauseCanvas.SetActive(true);
+            PauseMenuCanvas.SetActive(true);
         }
     }
 
     public void Resume()
     {
-        PauseCanvas.SetActive(false);
+        PauseMenuCanvas.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -29,8 +31,10 @@ public class PauseMenu : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void QuitApp() {
+    public void QuitApp()
+    {
         Application.Quit();
         Debug.Log("Application has quit.");
     }
+
 }
