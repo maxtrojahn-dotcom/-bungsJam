@@ -8,12 +8,18 @@ public class AnimationAndMovementController : MonoBehaviour
     CharacterController characterController;
     Animator animator;
 
+    //optimization
+    int isWalkingHash;
+    int isRunningHash;
 
     //variables to store player input values
     Vector2 currentMovementInput;
     Vector3 currentMovement;
+    Vector3 currentRunMovement;
     bool isMovementPressed;
-    float rotationFactorPerFrame = 1.0f;
+    bool isRunPressed;
+    float rotationFactorPerFrame = 15.0f;
+    float runMultiplier = 3.0f;
 
     void Awake()
     {
@@ -21,13 +27,28 @@ public class AnimationAndMovementController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
 
+        isWalkingHash = Animator.StringToHash("isWalking");
+        isRunningHash = Animator.StringToHash("isRunning");
+
+        //start walking
         playerInput.CharacterControls.Move.started += onMovementInput;
 
-        //cancel movement
+        //cancel walking
         playerInput.CharacterControls.Move.canceled += onMovementInput;
 
         //update changes
         playerInput.CharacterControls.Move.performed += onMovementInput;
+
+        //run
+        playerInput.CharacterControls.Run.started += onRun;
+
+        //stop running
+        playerInput.CharacterControls.Run.canceled += onRun;
+    }
+
+    void onRun (InputAction.CallbackContext context)
+    {
+        isRunPressed = context.ReadValueAsButton();
     }
 
     void handleRotation()
@@ -43,7 +64,7 @@ public class AnimationAndMovementController : MonoBehaviour
         if (isMovementPressed)
         {
             Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame);
+            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime);
         }
     }
 
@@ -54,13 +75,15 @@ public class AnimationAndMovementController : MonoBehaviour
         currentMovementInput = context.ReadValue<Vector2>();
         currentMovement.x = currentMovementInput.x;
         currentMovement.z = currentMovementInput.y;
+        currentRunMovement.x = currentRunMovement.x * runMultiplier;
+        currentRunMovement.z = currentRunMovement.y * runMultiplier;
         isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
     }
 
     void handleAnimation()
     {
-        bool isWalking = animator.GetBool("isWalking");
-        bool isRunning = animator.GetBool("isRunning");
+        bool isWalking = animator.GetBool(isWalkingHash);
+        bool isRunning = animator.GetBool(isRunningHash);
 
         if (isMovementPressed && !isWalking)
         {
@@ -72,14 +95,51 @@ public class AnimationAndMovementController : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
 
+        if ((isMovementPressed && isRunPressed) && !isRunning)
+        {
+            animator.SetBool(isRunningHash, true);
+        }
+
+        else if ((!isMovementPressed || !isRunPressed) && isRunning)
+        {
+            animator.SetBool(isRunningHash, false);
+        }
+
     }
+
+    void handleGravity()
+    {
+        if (characterController.isGrounded)
+        {
+            float groundedGravity = -0.05f;
+            currentMovement.y = groundedGravity;
+            currentRunMovement.y = groundedGravity;
+        }
+
+        else
+        {
+            float gravity = -9.8f;
+            currentMovement.y += gravity;
+            currentRunMovement.y += gravity;
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         handleRotation();
         handleAnimation();
-        characterController.Move(currentMovement * Time.deltaTime);
+
+        if (isRunPressed)
+        {
+            characterController.Move(currentRunMovement * Time.deltaTime);
+        }
+
+        else
+        {
+            characterController.Move(currentMovement * Time.deltaTime);
+        }
     }
 
     void OnEnable()
