@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: f816f321b36a0c1adadd28e569260f8c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149123
+  packageName: Audio Manager | CG
+  packageVersion: 3.1.1
+  assetPath: Assets/Carter Games/Audio Manager/Shared Systems/Editor/Version Validation
+    (v2)/VersionChecker.cs
+  uploadId: 901212
