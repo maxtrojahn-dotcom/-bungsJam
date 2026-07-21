@@ -18,11 +18,15 @@ public class AnimationAndMovementController : MonoBehaviour
     Vector3 currentRunMovement;
     bool isMovementPressed;
     bool isRunPressed;
+
+    //constants
     float rotationFactorPerFrame = 15.0f;
     float runMultiplier = 3.0f;
+    int zero = 0;
 
-    float gravity = -.05f;
-    float groundedGravity = - 9.8f;
+    //gravity variable
+    float gravity = -9.8f;
+    float groundedGravity = -2f;
 
     //jump variable
     bool isJumpPressed = false;
@@ -121,8 +125,8 @@ public class AnimationAndMovementController : MonoBehaviour
         currentMovement.x = currentMovementInput.x;
         currentMovement.z = currentMovementInput.y;
         currentRunMovement.x = currentRunMovement.x * runMultiplier;
-        currentRunMovement.z = currentRunMovement.y * runMultiplier;
-        isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
+        currentRunMovement.z = currentRunMovement.z * runMultiplier;
+        isMovementPressed = currentMovementInput.x != zero || currentMovementInput.y != zero;
     }
 
     void handleAnimation()
@@ -202,9 +206,9 @@ public class AnimationAndMovementController : MonoBehaviour
         {
             characterController.Move(currentMovement * Time.deltaTime);
         }
-
         handleGravity();
         handleJump();
+       
     }
 
     void OnEnable()
