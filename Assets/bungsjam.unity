@@ -206,12 +206,24 @@ PrefabInstance:
       value: SM_Bld_Bridge_01
       objectReference: {fileID: 0}
     - target: {fileID: 4510305233141662, guid: f5bc5b7e54a2d9f4aaf4ceb148210d16, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510305233141662, guid: f5bc5b7e54a2d9f4aaf4ceb148210d16, type: 3}
+      propertyPath: m_LocalScale.y
+      value: -0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510305233141662, guid: f5bc5b7e54a2d9f4aaf4ceb148210d16, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510305233141662, guid: f5bc5b7e54a2d9f4aaf4ceb148210d16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.24570672
       objectReference: {fileID: 0}
     - target: {fileID: 4510305233141662, guid: f5bc5b7e54a2d9f4aaf4ceb148210d16, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.04
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4510305233141662, guid: f5bc5b7e54a2d9f4aaf4ceb148210d16, type: 3}
       propertyPath: m_LocalPosition.z
@@ -277,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2444215560086890530, guid: 57cbaaf6882b313429e179a430fc3183, type: 3}
       propertyPath: m_Volume
-      value: 0.54
+      value: 0.172
       objectReference: {fileID: 0}
     - target: {fileID: 2444215560086890530, guid: 57cbaaf6882b313429e179a430fc3183, type: 3}
       propertyPath: m_Resource
@@ -426,13 +438,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146040220}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3835699, y: -0.11877107, z: 0.049817026, w: 0.9144867}
-  m_LocalPosition: {x: 5.9, y: 12.18, z: -9.78}
+  m_LocalRotation: {x: 0.16683015, y: -0.12695992, z: 0.02166745, w: 0.9775374}
+  m_LocalPosition: {x: 7.6, y: 5.66, z: -16.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 45.51, y: -14.8, z: 0}
+  m_LocalEulerAnglesHint: {x: 19.37, y: -14.8, z: 0}
 --- !u!114 &146040224
 MonoBehaviour:
   m_ObjectHideFlags: 0
