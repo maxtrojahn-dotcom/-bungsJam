@@ -4,9 +4,10 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour 
 {
   
-    public void StartGame(string Game_Level01) 
+    public void StartGame(string CatGame_01) 
     {
-        SceneManager.LoadScene(Game_Level01);
+        SceneManager.LoadScene(CatGame_01);
+        Debug.Log("Aktuelle Szene." + SceneManager.GetActiveScene().name);
     }
     
     public void QuitApp() 

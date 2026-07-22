@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/UI/UI_Scenes/MainMenu.unity
     guid: c82c114170ea16e4fa2daf94237cd3f9
   - enabled: 1
-    path: Assets/LevelDesign/TestLevel_Scenes/Game_Level01.unity
-    guid: 2a5ce9dd8a6cf9940b951659c7d3b3b8
-  - enabled: 1
     path: Assets/UI/UI_Scenes/OptionsMenu.unity
     guid: f53be38ef3d2acf4e912e868d5ef2478
   - enabled: 1
@@ -23,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UI/UI_Scenes/CreditsMenu.unity
     guid: b2a0aba66ac117e4ba9b9ea2e9f926d7
+  - enabled: 1
+    path: Assets/LevelDesign/Level_Jam/CatGame_01.unity
+    guid: 2be87207396087241ba97f3c7726b4e7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3605deb1d0d21434094040cba7aa4ab3, type: 3}
   m_UseUCBPForAssetBundles: 0
