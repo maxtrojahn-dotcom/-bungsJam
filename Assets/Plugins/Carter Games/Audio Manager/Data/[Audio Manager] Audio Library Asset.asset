@@ -22,9 +22,9 @@ MonoBehaviour:
         value: {fileID: 8300000, guid: 9f5b68e4cf4165f469cf6a595b938cc3, type: 3}
         path: Assets/Carter Games/Audio/the speck of dust under the table_V2.wav
         dynamicStartTime:
-          time: 0.00045351475
+          time: 89.7
           threshold: 0
-          option: 0
+          option: 1
           tabPos: 1
         defaultSettings:
           volume: 0.861
