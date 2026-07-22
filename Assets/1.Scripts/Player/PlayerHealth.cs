@@ -3,64 +3,60 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("Health")]
-    public int maxHealth = 20;
-    private int currentHealth;
+    [Header("Saturation")]
+    public int maxSaturation = 20;
+    private int currentSaturation;
 
     [Header("UI")]
-    public Slider healthBar;
-    public GameObject deathScreen;
-    public GameObject playermodel;
+    public Slider saturationBar;
+    public GameObject GameOverScreen;
+   
 
-    public UiController uiController;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        currentSaturation = maxSaturation;
 
-        healthBar.maxValue = maxHealth;
-        healthBar.value = currentHealth;
+        saturationBar.maxValue = maxSaturation;
+        saturationBar.value = currentSaturation;
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        currentHealth = Mathf.Max(currentHealth, 0);
+        currentSaturation -= damage;
+        currentSaturation = Mathf.Max(currentSaturation, 0);
 
-        UpdateHealthBar();
+        UpdateSaturationBar();
 
-        if (currentHealth <= 0)
+        if (currentSaturation <= 0)
         {
-            Die();
+            GameOver();
         }
     }
 
     public void Heal(int amount)
     {
-        currentHealth += amount;
-        currentHealth = Mathf.Min(currentHealth, maxHealth);
+        currentSaturation += amount;
+        currentSaturation = Mathf.Min(currentSaturation, maxSaturation);
 
-        UpdateHealthBar();
+        UpdateSaturationBar();
     }
 
-    void UpdateHealthBar()
+    void UpdateSaturationBar()
     {
-        healthBar.value = currentHealth;
+        saturationBar.value = currentSaturation;
     }
 
-    void Die()
+    void GameOver()
     {
-       uiController.UnlockCursor();
-        deathScreen.SetActive(true);
-        playermodel.SetActive(false);
-        // Disable player controls here (e.g., disable movement, shooting, etc.)
+        GameOverScreen.SetActive(true);
     }
 
-    public int GetHealth()
+    public int GetSaturation()
     {
-        return currentHealth;
+        return currentSaturation;
     }
-  // regen health over time (optional)
+ 
   
 }
 
