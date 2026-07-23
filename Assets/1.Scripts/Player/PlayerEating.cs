@@ -8,10 +8,10 @@ public class PlayerEating : MonoBehaviour
     [SerializeField] private float eatingDuration = 2f;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private PlayerSaturation playerSaturation;
+    [SerializeField] private PlayerPuke playerPuke;
     [SerializeField] private Animator animator;
 
-
-    [Header("Eating Progress UI")]
+    [Header("Eating Progress")]
     [SerializeField] private GameObject eatingProgressObject;
     [SerializeField] private Slider eatingProgressSlider;
 
@@ -21,14 +21,10 @@ public class PlayerEating : MonoBehaviour
 
     public bool IsEating { get; private set; }
 
-    [SerializeField, Min(1)]
-    private int maxEyeHearts = 3;
-
-    [SerializeField]
-    private int currentEyeHearts;
-
-    public int CurrentEyeHearts => currentEyeHearts;
+    // Wird vom Guard abgefragt.
     public bool HasNoHeartEyes => currentEyeHearts <= 0;
+
+    private int currentEyeHearts;
     private bool lostEyeDuringCurrentMeal;
     private Coroutine eatingCoroutine;
 
@@ -40,8 +36,16 @@ public class PlayerEating : MonoBehaviour
         if (playerSaturation == null)
             playerSaturation = GetComponent<PlayerSaturation>();
 
+        if (playerPuke == null)
+            playerPuke = GetComponent<PlayerPuke>();
+
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
+
+        currentEyeHearts =
+            eyeHeartObjects != null && eyeHeartObjects.Length > 0
+                ? eyeHeartObjects.Length
+                : 3;
 
         if (targetObject != null)
             targetObject.SetActive(false);
@@ -54,17 +58,23 @@ public class PlayerEating : MonoBehaviour
         }
 
         SetEatingProgressVisible(false);
-        currentEyeHearts = maxEyeHearts;
         UpdateEyeHearts();
     }
 
-    public bool StartEating(int saturationAmount, GameObject foodObject)
+    public bool StartEating(
+        int saturationAmount,
+        GameObject foodObject,
+        bool pukeAfterEating = false)
     {
         if (IsEating)
             return false;
 
         eatingCoroutine = StartCoroutine(
-            EatingRoutine(saturationAmount, foodObject)
+            EatingRoutine(
+                saturationAmount,
+                foodObject,
+                pukeAfterEating
+            )
         );
 
         return true;
@@ -72,7 +82,8 @@ public class PlayerEating : MonoBehaviour
 
     private IEnumerator EatingRoutine(
         int saturationAmount,
-        GameObject foodObject)
+        GameObject foodObject,
+        bool pukeAfterEating)
     {
         IsEating = true;
         lostEyeDuringCurrentMeal = false;
@@ -104,7 +115,6 @@ public class PlayerEating : MonoBehaviour
             yield return null;
         }
 
-        // Essen wurde vollständig abgeschlossen.
         if (playerSaturation != null)
             playerSaturation.AddSaturation(saturationAmount);
 
@@ -112,6 +122,10 @@ public class PlayerEating : MonoBehaviour
             Destroy(foodObject);
 
         FinishEating();
+
+        // Wird beispielsweise bei der 15-%-Trash-Chance verwendet.
+        if (pukeAfterEating && playerPuke != null)
+            playerPuke.TryPuke();
     }
 
     public void InterruptEating()
@@ -125,7 +139,8 @@ public class PlayerEating : MonoBehaviour
             eatingCoroutine = null;
         }
 
-        // Keine Sättigung und kein Zerstören des Essens.
+        // Bei einer Unterbrechung:
+        // keine Sättigung, kein Zerstören, kein Übergeben.
         FinishEating();
     }
 
@@ -142,9 +157,10 @@ public class PlayerEating : MonoBehaviour
 
         SetEatingProgressVisible(false);
     }
+
     private void SetEatingProgressVisible(bool visible)
     {
-        if (eatingProgressSlider != null && !visible)
+        if (!visible && eatingProgressSlider != null)
             eatingProgressSlider.value = 0f;
 
         if (eatingProgressObject != null)
@@ -159,6 +175,7 @@ public class PlayerEating : MonoBehaviour
         if (currentEyeHearts <= 0)
             return;
 
+        // Pro Essvorgang kann nur ein Herz verloren gehen.
         lostEyeDuringCurrentMeal = true;
         currentEyeHearts--;
 
@@ -167,9 +184,15 @@ public class PlayerEating : MonoBehaviour
         if (currentEyeHearts <= 0 && targetObject != null)
             targetObject.SetActive(true);
     }
+
+    // Wird vom Guard aufgerufen, wenn die Jagd beendet wird.
     public void RestoreAllHeartEyes()
     {
-        currentEyeHearts = maxEyeHearts;
+        currentEyeHearts =
+            eyeHeartObjects != null && eyeHeartObjects.Length > 0
+                ? eyeHeartObjects.Length
+                : 3;
+
         lostEyeDuringCurrentMeal = false;
 
         UpdateEyeHearts();
@@ -180,10 +203,31 @@ public class PlayerEating : MonoBehaviour
 
     private void UpdateEyeHearts()
     {
+        if (eyeHeartObjects == null)
+            return;
+
         for (int i = 0; i < eyeHeartObjects.Length; i++)
         {
             if (eyeHeartObjects[i] != null)
-                eyeHeartObjects[i].SetActive(i < currentEyeHearts);
+            {
+                eyeHeartObjects[i].SetActive(
+                    i < currentEyeHearts
+                );
+            }
         }
+    }
+
+    private void OnDisable()
+    {
+        if (eatingCoroutine != null)
+        {
+            StopCoroutine(eatingCoroutine);
+            eatingCoroutine = null;
+        }
+
+        IsEating = false;
+
+        if (playerController != null)
+            playerController.enabled = true;
     }
 }

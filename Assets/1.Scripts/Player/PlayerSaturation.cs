@@ -12,6 +12,13 @@ public class PlayerSaturation : MonoBehaviour
     [SerializeField, Min(0.1f)]
     private float secondsPerPoint = 3f;
 
+    [Header("Übergeben")]
+    [SerializeField, Range(1, 100)]
+    private int pukeThreshold = 80;
+
+    [SerializeField]
+    private PlayerPuke playerPuke;
+
     [Header("UI")]
     [SerializeField]
     private Slider saturationSlider;
@@ -29,6 +36,9 @@ public class PlayerSaturation : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+
+        if (playerPuke == null)
+            playerPuke = GetComponent<PlayerPuke>();
     }
 
     private void Start()
@@ -43,6 +53,7 @@ public class PlayerSaturation : MonoBehaviour
         }
 
         UpdateSaturationUI();
+        CheckPukeThreshold();
     }
 
     private void Update()
@@ -74,6 +85,7 @@ public class PlayerSaturation : MonoBehaviour
         );
 
         UpdateSaturationUI();
+        CheckPukeThreshold();
     }
 
     public void RemoveSaturation(int amount)
@@ -90,17 +102,6 @@ public class PlayerSaturation : MonoBehaviour
             LoadGameOverScene();
     }
 
-    private void UpdateSaturationUI()
-    {
-        if (saturationSlider != null)
-            saturationSlider.value = CurrentSaturation;
-    }
-
-    private void LoadGameOverScene()
-    {
-        isGameOver = true;
-        SceneManager.LoadScene(gameOverSceneName);
-    }
     public void SetSaturation(int value)
     {
         CurrentSaturation = Mathf.Clamp(value, 0, 100);
@@ -109,6 +110,39 @@ public class PlayerSaturation : MonoBehaviour
         UpdateSaturationUI();
 
         if (CurrentSaturation <= 0)
+        {
             LoadGameOverScene();
+        }
+        else
+        {
+            CheckPukeThreshold();
+        }
+    }
+
+    private void CheckPukeThreshold()
+    {
+        if (isGameOver)
+            return;
+
+        if (CurrentSaturation >= pukeThreshold &&
+            playerPuke != null)
+        {
+            playerPuke.TryPuke();
+        }
+    }
+
+    private void UpdateSaturationUI()
+    {
+        if (saturationSlider != null)
+            saturationSlider.value = CurrentSaturation;
+    }
+
+    private void LoadGameOverScene()
+    {
+        if (isGameOver)
+            return;
+
+        isGameOver = true;
+        SceneManager.LoadScene(gameOverSceneName);
     }
 }
