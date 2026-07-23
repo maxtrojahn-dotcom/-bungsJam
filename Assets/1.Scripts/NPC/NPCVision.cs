@@ -14,7 +14,6 @@ public class NPCVision : MonoBehaviour
     private PlayerAwareness playerAwareness;
     private PlayerEating playerEating;
 
-    // Verhindert, dass pro Frame ein Herzauge verschwindet.
     private bool wasEatingAndSeen;
 
     private void Start()
@@ -39,7 +38,8 @@ public class NPCVision : MonoBehaviour
         if (playerEating == null)
         {
             playerEating =
-                playerAwareness.GetComponentInChildren<PlayerEating>();
+                playerAwareness
+                .GetComponentInChildren<PlayerEating>();
         }
 
         if (playerEating == null)
@@ -58,14 +58,16 @@ public class NPCVision : MonoBehaviour
 
         bool canSeePlayer = CanSeePlayer();
 
-        playerAwareness.SetWatchedBy(this, canSeePlayer);
+        playerAwareness.SetWatchedBy(
+            this,
+            canSeePlayer
+        );
 
         bool eatingAndSeen =
             canSeePlayer &&
             playerEating != null &&
             playerEating.IsEating;
 
-        // Nur einmal beim Beginn des Zustands abziehen.
         if (eatingAndSeen && !wasEatingAndSeen)
         {
             playerEating.SeenByEnemy();
@@ -79,15 +81,19 @@ public class NPCVision : MonoBehaviour
         if (eyes == null || playerAwareness == null)
             return false;
 
-        Transform target = playerAwareness.SightTarget;
+        Transform target =
+            playerAwareness.SightTarget;
 
         Vector3 direction =
             target.position - eyes.position;
 
         float distance = direction.magnitude;
 
-        if (distance > viewDistance || distance <= 0.01f)
+        if (distance > viewDistance ||
+            distance <= 0.01f)
+        {
             return false;
+        }
 
         float angle = Vector3.Angle(
             eyes.forward,
@@ -109,7 +115,8 @@ public class NPCVision : MonoBehaviour
         }
 
         PlayerAwareness hitPlayer =
-            hit.collider.GetComponentInParent<PlayerAwareness>();
+            hit.collider
+                .GetComponentInParent<PlayerAwareness>();
 
         return hitPlayer == playerAwareness;
     }
@@ -117,7 +124,12 @@ public class NPCVision : MonoBehaviour
     private void OnDisable()
     {
         if (playerAwareness != null)
-            playerAwareness.SetWatchedBy(this, false);
+        {
+            playerAwareness.SetWatchedBy(
+                this,
+                false
+            );
+        }
 
         wasEatingAndSeen = false;
     }
