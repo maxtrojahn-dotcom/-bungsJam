@@ -22,12 +22,202 @@ MonoBehaviour:
         value: {fileID: 8300000, guid: 9f5b68e4cf4165f469cf6a595b938cc3, type: 3}
         path: Assets/Carter Games/Audio/the speck of dust under the table_V2.wav
         dynamicStartTime:
-          time: 89.7
+          time: 87.8
           threshold: 0
           option: 1
           tabPos: 1
         defaultSettings:
           volume: 0.861
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: alex_jauk-spitting-out-water-funny-211792-5bb9f143-78ea-404c-836e-31b80584eba4
+      value:
+        key: alex_jauk-spitting-out-water-funny-211792
+        id: alex_jauk-spitting-out-water-funny-211792-5bb9f143-78ea-404c-836e-31b80584eba4
+        defaultKey: alex_jauk-spitting-out-water-funny-211792-5bb9f143-78ea-404c-836e-31b80584eba4
+        value: {fileID: 8300000, guid: d68e2e0271e64c445889c004251e66e7, type: 3}
+        path: Assets/Carter Games/Audio/alex_jauk-spitting-out-water-funny-211792.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: -2.39
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: antipodeanwriter-tech-house-orionx27s-belt-16439-e924da69-3bb1-436e-ae83-2466116d28c6
+      value:
+        key: antipodeanwriter-tech-house-orionx27s-belt-16439
+        id: antipodeanwriter-tech-house-orionx27s-belt-16439-e924da69-3bb1-436e-ae83-2466116d28c6
+        defaultKey: antipodeanwriter-tech-house-orionx27s-belt-16439-e924da69-3bb1-436e-ae83-2466116d28c6
+        value: {fileID: 8300000, guid: cff02bbc2c6783a41910ae62e7045bca, type: 3}
+        path: Assets/Carter Games/Audio/antipodeanwriter-tech-house-orionx27s-belt-16439.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: arpmedia-upbeat-upbeat-music-569476-3aaab135-94ac-4227-808f-ef179ac20e0d
+      value:
+        key: arpmedia-upbeat-upbeat-music-569476
+        id: arpmedia-upbeat-upbeat-music-569476-3aaab135-94ac-4227-808f-ef179ac20e0d
+        defaultKey: arpmedia-upbeat-upbeat-music-569476-3aaab135-94ac-4227-808f-ef179ac20e0d
+        value: {fileID: 8300000, guid: f0e02c61c5757f045ac8117a6dd58a20, type: 3}
+        path: Assets/Carter Games/Audio/arpmedia-upbeat-upbeat-music-569476.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: freesound_community-057982_sonido-tripasmp3-45612-46199b7f-c3a1-4ac6-8f5f-40f24fa9377e
+      value:
+        key: freesound_community-057982_sonido-tripasmp3-45612
+        id: freesound_community-057982_sonido-tripasmp3-45612-46199b7f-c3a1-4ac6-8f5f-40f24fa9377e
+        defaultKey: freesound_community-057982_sonido-tripasmp3-45612-46199b7f-c3a1-4ac6-8f5f-40f24fa9377e
+        value: {fileID: 8300000, guid: 303ae1bcf79c5ae40bd1098ed4cbffae, type: 3}
+        path: Assets/Carter Games/Audio/freesound_community-057982_sonido-tripasmp3-45612.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: freesound_community-man-drinking-coffee-then-spits-it-back-83270-3d35b3f9-880a-4432-9f00-f938b4cf15a9
+      value:
+        key: freesound_community-man-drinking-coffee-then-spits-it-back-83270
+        id: freesound_community-man-drinking-coffee-then-spits-it-back-83270-3d35b3f9-880a-4432-9f00-f938b4cf15a9
+        defaultKey: freesound_community-man-drinking-coffee-then-spits-it-back-83270-3d35b3f9-880a-4432-9f00-f938b4cf15a9
+        value: {fileID: 8300000, guid: e59ba6c5440eaa44198e00777f62e27c, type: 3}
+        path: Assets/Carter Games/Audio/freesound_community-man-drinking-coffee-then-spits-it-back-83270.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: freesound_community-stone-steps-6748-61be0b37-eca3-44db-84f6-6bd3c4581a70
+      value:
+        key: freesound_community-stone-steps-6748
+        id: freesound_community-stone-steps-6748-61be0b37-eca3-44db-84f6-6bd3c4581a70
+        defaultKey: freesound_community-stone-steps-6748-61be0b37-eca3-44db-84f6-6bd3c4581a70
+        value: {fileID: 8300000, guid: a2da17a3a16cdf549a2ce89cf2afe482, type: 3}
+        path: Assets/Carter Games/Audio/freesound_community-stone-steps-6748.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: jarasnat-crowd-noise-284490-64bc5148-4ecb-411d-84b7-8a559c409b92
+      value:
+        key: jarasnat-crowd-noise-284490
+        id: jarasnat-crowd-noise-284490-64bc5148-4ecb-411d-84b7-8a559c409b92
+        defaultKey: jarasnat-crowd-noise-284490-64bc5148-4ecb-411d-84b7-8a559c409b92
+        value: {fileID: 8300000, guid: db015113fa8f83e4f99bdd79740fba37, type: 3}
+        path: Assets/Carter Games/Audio/jarasnat-crowd-noise-284490.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: khoamthanh-punch-sound-effect-7ehhx2evi5k-500092-0df0eefb-7dd6-439f-96be-240be9a54568
+      value:
+        key: khoamthanh-punch-sound-effect-7ehhx2evi5k-500092
+        id: khoamthanh-punch-sound-effect-7ehhx2evi5k-500092-0df0eefb-7dd6-439f-96be-240be9a54568
+        defaultKey: khoamthanh-punch-sound-effect-7ehhx2evi5k-500092-0df0eefb-7dd6-439f-96be-240be9a54568
+        value: {fileID: 8300000, guid: 11d996e6545ff5048a61f25d31dc1329, type: 3}
+        path: Assets/Carter Games/Audio/khoamthanh-punch-sound-effect-7ehhx2evi5k-500092.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: storegraphic-punch-493595-84f49221-5a2f-4182-bf2d-34763ead2a58
+      value:
+        key: storegraphic-punch-493595
+        id: storegraphic-punch-493595-84f49221-5a2f-4182-bf2d-34763ead2a58
+        defaultKey: storegraphic-punch-493595-84f49221-5a2f-4182-bf2d-34763ead2a58
+        value: {fileID: 8300000, guid: 862b012309a946840acc32e519436dbf, type: 3}
+        path: Assets/Carter Games/Audio/storegraphic-punch-493595.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: juliush-60s-underground-organ-rock-4209-045156a0-0f92-427e-b090-87979f691408
+      value:
+        key: juliush-60s-underground-organ-rock-4209
+        id: juliush-60s-underground-organ-rock-4209-045156a0-0f92-427e-b090-87979f691408
+        defaultKey: juliush-60s-underground-organ-rock-4209-045156a0-0f92-427e-b090-87979f691408
+        value: {fileID: 8300000, guid: 5bfbb0c0b4ed03945a583372ef33844c, type: 3}
+        path: Assets/Carter Games/Audio/juliush-60s-underground-organ-rock-4209.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
           pitch: 1
         showDynamicTime: 0
         metaData:
