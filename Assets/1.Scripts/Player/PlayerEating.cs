@@ -21,7 +21,14 @@ public class PlayerEating : MonoBehaviour
 
     public bool IsEating { get; private set; }
 
-    private int currentEyeHearts = 3;
+    [SerializeField, Min(1)]
+    private int maxEyeHearts = 3;
+
+    [SerializeField]
+    private int currentEyeHearts;
+
+    public int CurrentEyeHearts => currentEyeHearts;
+    public bool HasNoHeartEyes => currentEyeHearts <= 0;
     private bool lostEyeDuringCurrentMeal;
     private Coroutine eatingCoroutine;
 
@@ -47,6 +54,7 @@ public class PlayerEating : MonoBehaviour
         }
 
         SetEatingProgressVisible(false);
+        currentEyeHearts = maxEyeHearts;
         UpdateEyeHearts();
     }
 
@@ -158,6 +166,16 @@ public class PlayerEating : MonoBehaviour
 
         if (currentEyeHearts <= 0 && targetObject != null)
             targetObject.SetActive(true);
+    }
+    public void RestoreAllHeartEyes()
+    {
+        currentEyeHearts = maxEyeHearts;
+        lostEyeDuringCurrentMeal = false;
+
+        UpdateEyeHearts();
+
+        if (targetObject != null)
+            targetObject.SetActive(false);
     }
 
     private void UpdateEyeHearts()

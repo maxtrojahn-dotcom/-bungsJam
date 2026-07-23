@@ -101,4 +101,14 @@ public class PlayerSaturation : MonoBehaviour
         isGameOver = true;
         SceneManager.LoadScene(gameOverSceneName);
     }
+    public void SetSaturation(int value)
+    {
+        CurrentSaturation = Mathf.Clamp(value, 0, 100);
+        movementTimer = 0f;
+
+        UpdateSaturationUI();
+
+        if (CurrentSaturation <= 0)
+            LoadGameOverScene();
+    }
 }
