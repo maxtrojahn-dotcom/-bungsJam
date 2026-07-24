@@ -27,12 +27,12 @@ public class PlayerSaturation : MonoBehaviour
     [SerializeField]
     private TMP_Text saturationText;
 
-    [Header("Szenen")]
+    [Header("Spielende")]
     [SerializeField]
-    private string gameOverSceneName = "GameOver";
+    private GameObject winningScreen;
 
     [SerializeField]
-    private string winningSceneName = "WinningScreen";
+    private string gameOverSceneName = "GameOverMenu";
 
     [SerializeField, Range(0, 100)]
     private int winningSaturationMin = 73;
@@ -44,14 +44,21 @@ public class PlayerSaturation : MonoBehaviour
 
     private CharacterController characterController;
     private float movementTimer;
-    private bool isSceneLoading;
+    private bool gameFinished;
 
     private void Awake()
     {
+        // Wichtig, falls das Spiel beim Winning Screen pausiert wurde.
+        Time.timeScale = 1f;
+
         characterController = GetComponent<CharacterController>();
 
         if (playerPuke == null)
             playerPuke = GetComponent<PlayerPuke>();
+
+        // Winning Screen beim Start und nach einem Restart ausblenden.
+        if (winningScreen != null)
+            winningScreen.SetActive(false);
     }
 
     private void Start()
@@ -71,7 +78,7 @@ public class PlayerSaturation : MonoBehaviour
 
     private void Update()
     {
-        if (isSceneLoading)
+        if (gameFinished)
             return;
 
         Vector3 horizontalVelocity = characterController.velocity;
@@ -91,6 +98,9 @@ public class PlayerSaturation : MonoBehaviour
 
     public void AddSaturation(int amount)
     {
+        if (gameFinished)
+            return;
+
         CurrentSaturation = Mathf.Clamp(
             CurrentSaturation + amount,
             0,
@@ -103,6 +113,9 @@ public class PlayerSaturation : MonoBehaviour
 
     public void RemoveSaturation(int amount)
     {
+        if (gameFinished)
+            return;
+
         CurrentSaturation = Mathf.Clamp(
             CurrentSaturation - amount,
             0,
@@ -115,6 +128,9 @@ public class PlayerSaturation : MonoBehaviour
 
     public void SetSaturation(int value)
     {
+        if (gameFinished)
+            return;
+
         CurrentSaturation = Mathf.Clamp(value, 0, 100);
         movementTimer = 0f;
 
@@ -124,13 +140,13 @@ public class PlayerSaturation : MonoBehaviour
 
     private void CheckSaturationState()
     {
-        if (isSceneLoading)
+        if (gameFinished)
             return;
 
-        // Bei 0 Sättigung: Game Over
+        // Bei 0 Sättigung Game-Over-Szene laden.
         if (CurrentSaturation <= 0)
         {
-            LoadScene(gameOverSceneName, "Game-Over");
+            LoadGameOverScene();
             return;
         }
 
@@ -144,15 +160,15 @@ public class PlayerSaturation : MonoBehaviour
             winningSaturationMax
         );
 
-        // Zwischen 73 und 80 einschließlich: Sieg
+        // Zwischen 73 und 80 einschließlich gewinnen.
         if (CurrentSaturation >= minimum &&
             CurrentSaturation <= maximum)
         {
-            LoadScene(winningSceneName, "Winning");
+            ShowWinningScreen();
             return;
         }
 
-        // Übergeben, falls der Gewinnbereich überschritten wurde
+        // Übergeben, wenn der Gewinnbereich übersprungen wurde.
         if (CurrentSaturation >= pukeThreshold &&
             playerPuke != null)
         {
@@ -169,23 +185,42 @@ public class PlayerSaturation : MonoBehaviour
             saturationText.text = CurrentSaturation + "%";
     }
 
-    private void LoadScene(string sceneName, string sceneType)
+    private void ShowWinningScreen()
     {
-        if (isSceneLoading)
-            return;
-
-        if (string.IsNullOrWhiteSpace(sceneName))
+        if (winningScreen == null)
         {
             Debug.LogError(
-                sceneType +
-                "-Szene ist in PlayerSaturation nicht eingetragen.",
+                "Winning Screen wurde nicht eingetragen.",
                 this
             );
 
             return;
         }
 
-        isSceneLoading = true;
-        SceneManager.LoadScene(sceneName);
+        gameFinished = true;
+        winningScreen.SetActive(true);
+
+        Time.timeScale = 0f;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    private void LoadGameOverScene()
+    {
+        if (string.IsNullOrWhiteSpace(gameOverSceneName))
+        {
+            Debug.LogError(
+                "Game-Over-Szene wurde nicht eingetragen.",
+                this
+            );
+
+            return;
+        }
+
+        gameFinished = true;
+        Time.timeScale = 1f;
+
+        SceneManager.LoadScene(gameOverSceneName);
     }
 }
