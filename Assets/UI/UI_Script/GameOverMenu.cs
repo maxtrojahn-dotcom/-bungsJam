@@ -10,10 +10,11 @@ public class GameOverMenu : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void Restart()

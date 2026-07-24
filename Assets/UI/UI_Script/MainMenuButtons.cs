@@ -3,7 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour 
 {
-  
+    private void Awake()
+    {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void StartGame(string comic_intro) 
     {
         SceneManager.LoadScene(comic_intro);

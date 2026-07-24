@@ -43,7 +43,11 @@ public class PlayerController : MonoBehaviour
 
     //pause Munu
 
-
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void Awake()
     {
