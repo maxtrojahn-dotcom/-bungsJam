@@ -1,6 +1,7 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerSaturation : MonoBehaviour
@@ -23,15 +24,27 @@ public class PlayerSaturation : MonoBehaviour
     [SerializeField]
     private Slider saturationSlider;
 
-    [Header("Game Over")]
+    [SerializeField]
+    private TMP_Text saturationText;
+
+    [Header("Szenen")]
     [SerializeField]
     private string gameOverSceneName = "GameOver";
+
+    [SerializeField]
+    private string winningSceneName = "WinningScreen";
+
+    [SerializeField, Range(0, 100)]
+    private int winningSaturationMin = 73;
+
+    [SerializeField, Range(0, 100)]
+    private int winningSaturationMax = 80;
 
     public int CurrentSaturation { get; private set; }
 
     private CharacterController characterController;
     private float movementTimer;
-    private bool isGameOver;
+    private bool isSceneLoading;
 
     private void Awake()
     {
@@ -53,12 +66,12 @@ public class PlayerSaturation : MonoBehaviour
         }
 
         UpdateSaturationUI();
-        CheckPukeThreshold();
+        CheckSaturationState();
     }
 
     private void Update()
     {
-        if (isGameOver)
+        if (isSceneLoading)
             return;
 
         Vector3 horizontalVelocity = characterController.velocity;
@@ -85,7 +98,7 @@ public class PlayerSaturation : MonoBehaviour
         );
 
         UpdateSaturationUI();
-        CheckPukeThreshold();
+        CheckSaturationState();
     }
 
     public void RemoveSaturation(int amount)
@@ -97,9 +110,7 @@ public class PlayerSaturation : MonoBehaviour
         );
 
         UpdateSaturationUI();
-
-        if (CurrentSaturation <= 0)
-            LoadGameOverScene();
+        CheckSaturationState();
     }
 
     public void SetSaturation(int value)
@@ -108,22 +119,40 @@ public class PlayerSaturation : MonoBehaviour
         movementTimer = 0f;
 
         UpdateSaturationUI();
-
-        if (CurrentSaturation <= 0)
-        {
-            LoadGameOverScene();
-        }
-        else
-        {
-            CheckPukeThreshold();
-        }
+        CheckSaturationState();
     }
 
-    private void CheckPukeThreshold()
+    private void CheckSaturationState()
     {
-        if (isGameOver)
+        if (isSceneLoading)
             return;
 
+        // Bei 0 Sättigung: Game Over
+        if (CurrentSaturation <= 0)
+        {
+            LoadScene(gameOverSceneName, "Game-Over");
+            return;
+        }
+
+        int minimum = Mathf.Min(
+            winningSaturationMin,
+            winningSaturationMax
+        );
+
+        int maximum = Mathf.Max(
+            winningSaturationMin,
+            winningSaturationMax
+        );
+
+        // Zwischen 73 und 80 einschließlich: Sieg
+        if (CurrentSaturation >= minimum &&
+            CurrentSaturation <= maximum)
+        {
+            LoadScene(winningSceneName, "Winning");
+            return;
+        }
+
+        // Übergeben, falls der Gewinnbereich überschritten wurde
         if (CurrentSaturation >= pukeThreshold &&
             playerPuke != null)
         {
@@ -135,14 +164,28 @@ public class PlayerSaturation : MonoBehaviour
     {
         if (saturationSlider != null)
             saturationSlider.value = CurrentSaturation;
+
+        if (saturationText != null)
+            saturationText.text = CurrentSaturation + "%";
     }
 
-    private void LoadGameOverScene()
+    private void LoadScene(string sceneName, string sceneType)
     {
-        if (isGameOver)
+        if (isSceneLoading)
             return;
 
-        isGameOver = true;
-        SceneManager.LoadScene(gameOverSceneName);
+        if (string.IsNullOrWhiteSpace(sceneName))
+        {
+            Debug.LogError(
+                sceneType +
+                "-Szene ist in PlayerSaturation nicht eingetragen.",
+                this
+            );
+
+            return;
+        }
+
+        isSceneLoading = true;
+        SceneManager.LoadScene(sceneName);
     }
 }

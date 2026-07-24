@@ -33,6 +33,10 @@ public class FoodInteractable : MonoBehaviour, ImInteractible
     private Color qualityColor;
     private bool isFocused;
 
+    [Header("Trash")]
+    [SerializeField, Range(0f, 1f)]
+    private float trashPukeChance = 0.15f;
+
     public string InteractionPrompt => "Essen";
 
     public FoodQuality Quality => quality;
@@ -67,13 +71,13 @@ public class FoodInteractable : MonoBehaviour, ImInteractible
         if (randomValue < 20)
         {
             quality = FoodQuality.Green;
-            saturationAmount = 20;
+            saturationAmount = 40;
             qualityColor = new Color(0.1f, 1f, 0.15f);
         }
         else if (randomValue < 32) // 20 + 12
         {
             quality = FoodQuality.Yellow;
-            saturationAmount = 12;
+            saturationAmount = 21;
             qualityColor = new Color(1f, 0.85f, 0.05f);
         }
         else if (randomValue < 41) // 20 + 12 + 9
@@ -172,9 +176,14 @@ public class FoodInteractable : MonoBehaviour, ImInteractible
             return false;
         }
 
+        bool pukeAfterEating =
+            quality == FoodQuality.Red &&
+            Random.value < trashPukeChance;
+
         return playerEating.StartEating(
             saturationAmount,
-            gameObject
+            gameObject,
+            pukeAfterEating
         );
     }
 
