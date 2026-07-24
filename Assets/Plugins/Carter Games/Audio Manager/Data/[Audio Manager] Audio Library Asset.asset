@@ -299,6 +299,25 @@ MonoBehaviour:
         metaData:
           category: 
           tags: []
+    - key: catEating-2c9a3303-3ca3-4d43-9c00-14698095f3c0
+      value:
+        key: catEating
+        id: catEating-2c9a3303-3ca3-4d43-9c00-14698095f3c0
+        defaultKey: catEating-2c9a3303-3ca3-4d43-9c00-14698095f3c0
+        value: {fileID: 8300000, guid: 4fbb06854f6569d4894d36621b10f1c3, type: 3}
+        path: Assets/1.Scripts/Player/PlayerParticles/FootSounds/catEating.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
   groups:
     list:
     - key: b0f279a9-caa0-47ab-b377-4bf21612677a
