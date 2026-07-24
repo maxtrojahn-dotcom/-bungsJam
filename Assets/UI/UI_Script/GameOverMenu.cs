@@ -18,7 +18,8 @@ public class GameOverMenu : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("CatGame_01");
     }
 
     public void Quit()
