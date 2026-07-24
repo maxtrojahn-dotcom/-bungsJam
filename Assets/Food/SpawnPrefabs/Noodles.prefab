@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8297528236823851594}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: noodles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6220904980239799503}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cup_empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 735201690475914979}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: noodles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8466366874359651136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Outlines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 7792768014650969805}
   - component: {fileID: 906138811698908106}
   - component: {fileID: 263819963100371461}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Noodles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6528491963775280318}
   - component: {fileID: 9146563949464018727}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4181191305965354517}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cup_empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +541,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6725611960726847634}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Noodles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,6 +634,10 @@ PrefabInstance:
       value: noodles
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 28791a942a0d5b949b4e48b1ae2e4a4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28791a942a0d5b949b4e48b1ae2e4a4f, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -719,6 +723,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cup_full
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a35b9e82e2da5ce49acc482e82908f5a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -796,6 +804,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a35b9e82e2da5ce49acc482e82908f5a, type: 3}
       propertyPath: m_Name
       value: cup_full
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a35b9e82e2da5ce49acc482e82908f5a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -878,6 +890,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 28791a942a0d5b949b4e48b1ae2e4a4f, type: 3}
       propertyPath: m_Name
       value: noodles
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28791a942a0d5b949b4e48b1ae2e4a4f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 28791a942a0d5b949b4e48b1ae2e4a4f, type: 3}
       propertyPath: m_IsActive
