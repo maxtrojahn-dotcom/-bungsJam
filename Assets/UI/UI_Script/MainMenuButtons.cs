@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour 
 {
   
-    public void StartGame(string CatGame_01) 
+    public void StartGame(string comic_intro) 
     {
-        SceneManager.LoadScene(CatGame_01);
+        SceneManager.LoadScene(comic_intro);
     }
     
     public void QuitApp() 
