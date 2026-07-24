@@ -239,5 +239,11 @@ MonoBehaviour:
         key: Master
         path: Assets/Sounds/MainMixer.mixer
         mixerGroup: {fileID: 24300002, guid: 2777ff1877070fa4090fa6a16af2e4d0, type: 2}
+    - key: 13375335-72c6-4b16-9530-62573ba69ab9
+      value:
+        uuid: 13375335-72c6-4b16-9530-62573ba69ab9
+        key: BackgroundMusic13375335
+        path: Assets/Carter Games/Audio/MainMixer.mixer
+        mixerGroup: {fileID: 3895200816898687241, guid: 2777ff1877070fa4090fa6a16af2e4d0, type: 2}
   categories: []
   tags: []
