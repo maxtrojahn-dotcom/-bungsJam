@@ -4,16 +4,33 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyBrain_Stupid))]
 public class EnemyAttack : MonoBehaviour
 {
-    [Header("Treffer")]
-    [SerializeField, Min(0.1f)]
-    private float attackRange = 2.41f;
+    [Header("Trefferbereich")]
 
-    [SerializeField, Range(1f, 180f)]
+  
+    [SerializeField, Min(0.1f)]
+    private float attackRange = 2.6f;
+
+    [SerializeField, Range(1f, 360f)]
     private float attackAngle = 84f;
 
-    [Header("Auswirkung")]
+    [Header("Sättigungsschaden")]
+
     [SerializeField, Range(0, 100)]
-    private int hungerAfterHit = 20;
+    private int minimumSaturationDamage = 20;
+
+    [SerializeField, Range(0, 100)]
+    private int maximumSaturationDamage = 45;
+
+    [Header("Schlag-Sound")]
+
+    [SerializeField]
+    private AudioSource attackAudioSource;
+
+    [SerializeField]
+    private AudioClip attackSound;
+
+    [SerializeField, Range(0f, 1f)]
+    private float attackSoundVolume = 1f;
 
     private EnemyBrain_Stupid brain;
     private Animator animator;
@@ -28,12 +45,27 @@ public class EnemyAttack : MonoBehaviour
     {
         brain = GetComponent<EnemyBrain_Stupid>();
         animator = GetComponent<Animator>();
+
+        // Sucht automatisch eine AudioSource auf diesem Objekt.
+        if (attackAudioSource == null)
+            attackAudioSource = GetComponent<AudioSource>();
+
+        // Falls noch keine vorhanden ist, wird automatisch eine erstellt.
+        if (attackAudioSource == null)
+        {
+            attackAudioSource =
+                gameObject.AddComponent<AudioSource>();
+
+            attackAudioSource.playOnAwake = false;
+        }
     }
 
     public void BeginSwing()
     {
         swingCanHit = true;
-        animator.SetBool(AttackHash, true);
+
+        if (animator != null)
+            animator.SetBool(AttackHash, true);
     }
 
     public void CancelSwing()
@@ -44,19 +76,27 @@ public class EnemyAttack : MonoBehaviour
             animator.SetBool(AttackHash, false);
     }
 
-    // Diese Methode wird ausschließlich vom Animation Event aufgerufen.
+    // Wird durch das Animation Event "AttackHit" aufgerufen.
     public void AttackHit()
     {
         if (!swingCanHit)
             return;
 
-        // Selbst bei einem versehentlich doppelten Event trifft
-        // derselbe Schlag dadurch nur einmal.
+        
         swingCanHit = false;
-        animator.SetBool(AttackHash, false);
 
-        if (!brain.IsInAttackState || brain.Target == null)
+        if (animator != null)
+            animator.SetBool(AttackHash, false);
+
+        if (brain == null ||
+            !brain.IsInAttackState ||
+            brain.Target == null)
+        {
             return;
+        }
+
+       
+        PlayAttackSound();
 
         bool successfulHit = IsTargetInsideHitArea();
 
@@ -73,7 +113,32 @@ public class EnemyAttack : MonoBehaviour
 
             if (saturation != null)
             {
-                saturation.SetSaturation(hungerAfterHit);
+                int minimumDamage = Mathf.Min(
+                    minimumSaturationDamage,
+                    maximumSaturationDamage
+                );
+
+                int maximumDamage = Mathf.Max(
+                    minimumSaturationDamage,
+                    maximumSaturationDamage
+                );
+
+                
+                int saturationDamage = Random.Range(
+                    minimumDamage,
+                    maximumDamage + 1
+                );
+
+                saturation.RemoveSaturation(saturationDamage);
+
+                Debug.Log(
+                    "Enemy-Treffer: " +
+                    saturationDamage +
+                    "% Sättigung abgezogen. Übrig: " +
+                    saturation.CurrentSaturation +
+                    "%",
+                    this
+                );
             }
             else
             {
@@ -87,11 +152,26 @@ public class EnemyAttack : MonoBehaviour
         brain.OnAttackResolved(successfulHit);
     }
 
+    private void PlayAttackSound()
+    {
+        if (attackAudioSource == null ||
+            attackSound == null)
+        {
+            return;
+        }
+
+        attackAudioSource.PlayOneShot(
+            attackSound,
+            attackSoundVolume
+        );
+    }
+
     private bool IsTargetInsideHitArea()
     {
         Vector3 direction =
             brain.Target.position - transform.position;
 
+        
         direction.y = 0f;
 
         if (direction.sqrMagnitude >
@@ -103,6 +183,10 @@ public class EnemyAttack : MonoBehaviour
         if (direction.sqrMagnitude <= 0.001f)
             return true;
 
+        
+        if (attackAngle >= 359.9f)
+            return true;
+
         float angle =
             Vector3.Angle(transform.forward, direction);
 
@@ -112,10 +196,14 @@ public class EnemyAttack : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
+
         Gizmos.DrawWireSphere(
             transform.position,
             attackRange
         );
+
+        if (attackAngle >= 359.9f)
+            return;
 
         Vector3 left =
             Quaternion.Euler(

@@ -223,6 +223,82 @@ MonoBehaviour:
         metaData:
           category: 
           tags: []
+    - key: step-b6a1fa60-9cef-4def-a153-a943c16a376d
+      value:
+        key: step
+        id: step-b6a1fa60-9cef-4def-a153-a943c16a376d
+        defaultKey: step-b6a1fa60-9cef-4def-a153-a943c16a376d
+        value: {fileID: 8300000, guid: f48b6351012e0604d86cfcfe2c94268f, type: 3}
+        path: Assets/1.Scripts/Player/PlayerParticles/FootSounds/step.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: step1-8a559e8f-5b83-424b-9c48-3a28416f9cd8
+      value:
+        key: step1
+        id: step1-8a559e8f-5b83-424b-9c48-3a28416f9cd8
+        defaultKey: step1-8a559e8f-5b83-424b-9c48-3a28416f9cd8
+        value: {fileID: 8300000, guid: f2541e108b01ac24eb99f84e6606b4e4, type: 3}
+        path: Assets/1.Scripts/Player/PlayerParticles/FootSounds/step1.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: stepShorter1-5f5eb053-d461-4092-9854-4ba8438d533d
+      value:
+        key: stepShorter1
+        id: stepShorter1-5f5eb053-d461-4092-9854-4ba8438d533d
+        defaultKey: stepShorter1-5f5eb053-d461-4092-9854-4ba8438d533d
+        value: {fileID: 8300000, guid: cd6f2764c8746fd45a967e4bd93e9a5a, type: 3}
+        path: Assets/1.Scripts/Player/PlayerParticles/FootSounds/stepShorter1.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
+    - key: stepShorter2-4189b66e-4461-4e76-ac69-3561886a7eac
+      value:
+        key: stepShorter2
+        id: stepShorter2-4189b66e-4461-4e76-ac69-3561886a7eac
+        defaultKey: stepShorter2-4189b66e-4461-4e76-ac69-3561886a7eac
+        value: {fileID: 8300000, guid: 3952271c55708bc40b782be79a0d56c5, type: 3}
+        path: Assets/1.Scripts/Player/PlayerParticles/FootSounds/stepShorter2.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
   groups:
     list:
     - key: b0f279a9-caa0-47ab-b377-4bf21612677a
