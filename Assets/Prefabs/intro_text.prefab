@@ -272,8 +272,8 @@ MonoBehaviour:
     WASTE, SATISFY YOUR HUNGER. BUT BE WARNED, DON'T GET GREEDY!\n\n\t[WASD] TO MOVE
     \t[E] TO INTERACT"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1bce94c8ab727cd45b98f955a4855dfc, type: 2}
-  m_sharedMaterial: {fileID: 3775794888685148436, guid: 1bce94c8ab727cd45b98f955a4855dfc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 04a02ef2a7f477849a05f5d5b4546fc6, type: 2}
+  m_sharedMaterial: {fileID: 3775794888685148436, guid: 04a02ef2a7f477849a05f5d5b4546fc6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

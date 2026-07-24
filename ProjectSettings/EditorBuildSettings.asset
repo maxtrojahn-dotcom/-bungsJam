@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/LevelDesign/Level_Jam/CatGame_01.unity
     guid: 2be87207396087241ba97f3c7726b4e7
   - enabled: 0
-    path: Assets/LevelDesign/TestLevel_Scenes/Game_Level01.unity
+    path: Assets/Scenes/Game_Level01.unity
     guid: 2a5ce9dd8a6cf9940b951659c7d3b3b8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3605deb1d0d21434094040cba7aa4ab3, type: 3}
