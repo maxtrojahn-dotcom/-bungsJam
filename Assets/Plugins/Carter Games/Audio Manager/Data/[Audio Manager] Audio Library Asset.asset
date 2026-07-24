@@ -318,6 +318,25 @@ MonoBehaviour:
         metaData:
           category: 
           tags: []
+    - key: universfield-ground-impact-352053-a8883f81-550e-4772-9340-80325e50fc87
+      value:
+        key: universfield-ground-impact-352053
+        id: universfield-ground-impact-352053-a8883f81-550e-4772-9340-80325e50fc87
+        defaultKey: universfield-ground-impact-352053-a8883f81-550e-4772-9340-80325e50fc87
+        value: {fileID: 8300000, guid: 3b38867cf61382140ab340ddbd2dd206, type: 3}
+        path: Assets/1.Scripts/Player/PlayerParticles/FootSounds/universfield-ground-impact-352053.mp3
+        dynamicStartTime:
+          time: 0
+          threshold: 0
+          option: 1
+          tabPos: 1
+        defaultSettings:
+          volume: 1
+          pitch: 1
+        showDynamicTime: 0
+        metaData:
+          category: 
+          tags: []
   groups:
     list:
     - key: b0f279a9-caa0-47ab-b377-4bf21612677a
