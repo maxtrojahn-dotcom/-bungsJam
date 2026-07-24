@@ -496,6 +496,18 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0139577
       objectReference: {fileID: 0}
+    - target: {fileID: 5041791005259039780, guid: 9808885ef3f2ac447bb76dacbac0a527, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5041791005259039780, guid: 9808885ef3f2ac447bb76dacbac0a527, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5041791005259039780, guid: 9808885ef3f2ac447bb76dacbac0a527, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6297385193976623390, guid: 9808885ef3f2ac447bb76dacbac0a527, type: 3}
       propertyPath: m_Name
       value: Cat_Player
