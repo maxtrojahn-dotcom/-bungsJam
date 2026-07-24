@@ -31,6 +31,8 @@ public class PlayerSaturation : MonoBehaviour
     [SerializeField]
     private GameObject winningScreen;
 
+    [SerializeField] private GameObject playerUI;
+
     [SerializeField]
     private string gameOverSceneName = "GameOverMenu";
 
@@ -59,6 +61,9 @@ public class PlayerSaturation : MonoBehaviour
         // Winning Screen beim Start und nach einem Restart ausblenden.
         if (winningScreen != null)
             winningScreen.SetActive(false);
+
+        
+        playerUI.SetActive(true);
     }
 
     private void Start()
@@ -199,6 +204,7 @@ public class PlayerSaturation : MonoBehaviour
 
         gameFinished = true;
         winningScreen.SetActive(true);
+        playerUI.SetActive(false);
 
         Time.timeScale = 0f;
 
